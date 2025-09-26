@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Статистика рассылок</h1>
+<ul>
+    <li>Успешных попыток отправки: {{ success_count }}</li>
+    <li>Неуспешных попыток отправки: {{ failed_count }}</li>
+    <li>Всего отправленных сообщений: {{ total_sent }}</li>
+</ul>
+{% endblock %}

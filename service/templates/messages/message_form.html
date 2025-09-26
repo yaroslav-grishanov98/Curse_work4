@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{% if form.instance.pk %}Редактирование сообщения{% else %}Добавление сообщения{% endif %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="{{ form.subject.id_for_label }}">Тема письма</label>
+    {{ form.subject.errors }}
+    {{ form.subject }}
+
+    <label for="{{ form.body.id_for_label }}">Тело письма</label>
+    {{ form.body.errors }}
+    {{ form.body }}
+
+    <div class="form-actions">
+        <button type="submit" class="btn">Сохранить</button>
+        <a href="{% url 'message_list' %}" class="btn" style="background-color: #888;">Отмена</a>
+    </div>
+</form>
+{% endblock %}
