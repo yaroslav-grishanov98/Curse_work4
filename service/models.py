@@ -1,8 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 class Client(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='clients', verbose_name='Владелец')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='clients', verbose_name='Владелец')
     email = models.EmailField(unique=True, verbose_name='Email')
     full_name = models.CharField(max_length=255, verbose_name='Ф.И.О.')
     comment = models.TextField(blank=True, verbose_name='Комментарий')
@@ -24,7 +24,7 @@ class Mailing(models.Model):
         ('finished', 'Завершена'),
     ]
 
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mailings', verbose_name='Владелец')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='mailings', verbose_name='Владелец')
     start_datetime = models.DateTimeField(null=True, blank=True, verbose_name='Дата и время первой отправки')
     end_datetime = models.DateTimeField(null=True, blank=True, verbose_name='Дата и время окончания отправки')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='created', verbose_name='Статус рассылки')
@@ -48,3 +48,4 @@ class MailingAttempt(models.Model):
 
     def __str__(self):
         return f"Попытка рассылки #{self.id} для {self.client.email} - {self.get_status_display()}"
+
