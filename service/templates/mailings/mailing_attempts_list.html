@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Попытки рассылок</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Рассылка</th>
+            <th>Клиент</th>
+            <th>Дата и время</th>
+            <th>Статус</th>
+            <th>Ответ почтового сервера</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attempt in attempts %}
+        <tr>
+            <td>{{ attempt.mailing }}</td>
+            <td>{{ attempt.client.email }}</td>
+            <td>{{ attempt.attempt_datetime }}</td>
+            <td>{{ attempt.get_status_display }}</td>
+            <td>{{ attempt.server_response }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Попыток рассылок нет</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

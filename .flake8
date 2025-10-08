@@ -1,0 +1,14 @@
+[flake8]
+exclude =
+    .venv,
+    venv,
+    env,
+    build,
+    dist,
+    migrations,
+    __pycache__,
+    *.pyc,
+    *.egg-info,
+    .git,
+    .tox
+max-line-length = 79

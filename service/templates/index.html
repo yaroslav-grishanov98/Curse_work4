@@ -2,9 +2,12 @@
 
 {% block content %}
 <h1>Главная страница</h1>
+
 <ul>
     <li>Всего рассылок: {{ total_mailings }}</li>
     <li>Активных рассылок: {{ active_mailings }}</li>
     <li>Уникальных получателей: {{ unique_clients }}</li>
 </ul>
+
+<a href="{% url 'mailing_attempts_list' %}" class="btn btn-primary mt-3">Просмотр попыток рассылок</a>
 {% endblock %}

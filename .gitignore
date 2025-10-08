@@ -85,6 +85,7 @@ celerybeat-schedule
 # dotenv
 .env
 .env.*
+!.env.example
 
 # virtualenv
 .venv/
@@ -114,6 +115,4 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# Django migrations
-*/migrations/*.py
-!*/migrations/__init__.py
+
